@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:pt="jakarta.faces.passthrough"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+<h:head>
+    <link rel="icon" href="resources/primespring/images/favicon.ico?v=1" />
+    <title>PrimeSpring</title>
+</h:head>
+<h:body>
+    <p:card>
+        <f:facet name="title">
+            <div style="box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1); background-color: #f8f8f8; border-radius: 6px; padding: 20px;">
+                <p:graphicImage library="primespring" name="images/logo-1024x1024.jpeg"
+                                width="80px" style="display: inline-block; vertical-align: middle;"/>
+                <h1 style="display: inline-block; vertical-align: middle; margin-left: 20px;">
+                    <h:outputText value="PrimeSpring"/>
+                </h1>
+            </div>
+        </f:facet>
+        <h:form id="formMsg">
+            <p:messages />
+            <p:inputText value="#{homeController.message}" pt:placeholder="Insert some text" >
+                <p:ajax event="keyup" update="ot" />
+            </p:inputText>
+            <br/><br/>
+            <h:outputText id="ot" value="&quot;#{homeController.reversedMessage}&quot;" />
+            <br/><br/><br/>
+            <p:commandButton update="formMsg" action="#{homeController.clear}" value="LIMPAR"/>
+        </h:form>
+    </p:card>
+</h:body>
+</f:view>
+</html>
