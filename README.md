@@ -21,9 +21,10 @@ using the latest version of the libraries available in **january 2024**.
 
 The references that I used to create this project.
 
-- [How to install CDI in Tomcat?](https://balusc.omnifaces.org/2013/10/how-to-install-cdi-in-tomcat.html)
-- [Eclipse Mojarra](https://github.com/eclipse-ee4j/mojarra)
-- [Spring MVC with Java Configuration](https://github.com/eugenp/tutorials/tree/master/spring-web-modules/spring-mvc-java)
-- [How to use Spring boot 3 with JSF?](https://stackoverflow.com/questions/75326448/how-to-use-spring-boot-3-with-jsf)
+ - [How to install CDI in Tomcat?](https://balusc.omnifaces.org/2013/10/how-to-install-cdi-in-tomcat.html)
+ - [Eclipse Mojarra](https://github.com/eclipse-ee4j/mojarra)
+ - [Spring MVC with Java Configuration](https://github.com/eugenp/tutorials/tree/master/spring-web-modules/spring-mvc-java)
+ - [How to use Spring boot 3 with JSF?](https://stackoverflow.com/questions/75326448/how-to-use-spring-boot-3-with-jsf)
+ - [spring-boot-primefaces-template](https://github.com/bilak/spring-boot-primefaces-template/blob/master/pom.xml)
 
 > "Nothing is lost, nothing is created, everything is copied." - Antoine Lavoisier
