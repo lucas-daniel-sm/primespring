@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:pt="jakarta.faces.passthrough"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <link rel="icon" href="resources/primespring/images/favicon.ico?v=1" />
+        <title>PrimeSpring - Cars List</title>
+    </h:head>
+    <h:body>
+        <p:card>
+            <f:facet name="title">
+                <p:graphicImage library="primespring" name="images/logo-1024x1024.jpeg"
+                                width="80px" style="display: inline-block; vertical-align: middle;"/>
+                <h1 style="display: inline-block; vertical-align: middle; margin-left: 20px;">
+                    <h:outputText value="PrimeSpring - Cars List"/>
+                </h1>
+            </f:facet>
+            <h:form id="formCarsTable">
+                <p:dataTable id="carsTable" var="car" value="#{carController.carLazyModel}" rowKey="car.id"
+                            paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
+                            paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+
+                   <p:column headerText="Id" sortBy="#{car.id}" filterBy="#{car.id}"><h:outputText value="#{car.id}"/></p:column>
+                   <p:column headerText="Make" sortBy="#{car.make}" filterBy="#{car.make}"><h:outputText value="#{car.make}"/></p:column>
+                   <p:column headerText="Model" sortBy="#{car.model}" filterBy="#{car.model}"><h:outputText value="#{car.model}"/></p:column>
+                   <p:column headerText="Year" sortBy="#{car.year}" filterBy="#{car.year}"><h:outputText value="#{car.year}"/></p:column>
+                </p:dataTable>
+                <br/>
+                <p:panelGrid columns="2">
+                    <p:commandButton update="formCarsTable" action="#{carController.populate}" value="Populate"/>
+                    <p:commandButton update="formCarsTable" action="#{carController.clear}" value="Clear"/>
+                </p:panelGrid>
+            </h:form>
+        </p:card>
+    </h:body>
+</f:view>
+</html>
