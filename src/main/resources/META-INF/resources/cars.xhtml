@@ -19,6 +19,10 @@
                 <h1 style="display: inline-block; vertical-align: middle; margin-left: 20px;">
                     <h:outputText value="PrimeSpring - Cars List"/>
                 </h1>
+                <h:form onsubmit="this.action='#{request.contextPath}/logout';"
+                        style="display: inline-block; vertical-align: middle;">
+                    <p:commandButton value="Logout" ajax="false" />
+                </h:form>
             </f:facet>
             <h:form id="formCarsTable">
                 <p:dataTable id="carsTable" var="car" value="#{carController.carLazyModel}" rowKey="car.id"

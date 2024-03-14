@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("/cars.xhtml");
+        registry.addViewController("/").setViewName("/cars");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

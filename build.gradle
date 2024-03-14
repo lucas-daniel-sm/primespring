@@ -23,10 +23,9 @@ repositories {
 
 dependencies {
     implementation 'org.joinfaces:primefaces-spring-boot-starter:5.2.3.1'
-
-    // Spring boot - Web
+    // Spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // Spring boot - Data
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.mysql:mysql-connector-j'
     // Spring boot - Tools
@@ -37,6 +36,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     // Spring boot - Test
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.withType(JavaCompile).configureEach {
