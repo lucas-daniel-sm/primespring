@@ -2,32 +2,46 @@
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core"
+      xmlns:a="jakarta.faces.passthrough"
       xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
         <link rel="icon" href="/favicon.ico?v=1"/>
         <title>PrimeSpring - Login</title>
+        <style>
+            html, body, .container {
+                height: 100%;
+            }
+
+            .container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
     </h:head>
     <h:body>
-        <p:card style="width: 500px;">
-            <f:facet name="title">
-                <p:graphicImage library="primespring" name="images/logo-1024x1024.jpeg"
-                                width="80px" style="display: inline-block; vertical-align: middle;"/>
-                <h1 style="display: inline-block; vertical-align: middle; margin-left: 20px;">
-                    <h:outputText value="PrimeSpring - Login"/>
-                </h1>
-            </f:facet>
-            <h:form id="formCarsTable" prependId="false">
-                <p:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
-                    <p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}"/>
+        <div class="container">
+            <p:card style="width: 500px;">
+                <f:facet name="title">
+                    <p:graphicImage library="primespring" name="images/logo-1024x1024.jpeg"
+                                    width="80px" style="display: inline-block; vertical-align: middle;"/>
+                    <h1 style="display: inline-block; vertical-align: middle; margin-left: 20px;">
+                        <h:outputText value="PrimeSpring - Login"/>
+                    </h1>
+                </f:facet>
+                <h:form id="formCarsTable" prependId="false">
+                    <p:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
+                        <p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}"/>
 
-                    <p:inputText id="username" placeholder="User name"/>
-                    <p:password id="password" placeholder="Password"/>
+                        <p:inputText id="username" placeholder="User name" a:autofocus="true"/>
+                        <p:password id="password" placeholder="Password"/>
 
-                    <p:commandButton value="Login" ajax="false"/>
-                </p:panelGrid>
-            </h:form>
-        </p:card>
+                        <p:commandButton value="Login" ajax="false"/>
+                    </p:panelGrid>
+                </h:form>
+            </p:card>
+        </div>
     </h:body>
 </f:view>
 </html>
