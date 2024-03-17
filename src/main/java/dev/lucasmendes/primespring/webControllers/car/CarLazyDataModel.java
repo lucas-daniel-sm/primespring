@@ -1,6 +1,7 @@
 package dev.lucasmendes.primespring.webControllers.car;
 
 import dev.lucasmendes.primespring.entities.Car;
+import dev.lucasmendes.primespring.entities.CarMake;
 import dev.lucasmendes.primespring.repositories.CarRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -77,6 +78,7 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
         var car = new Car();
         var matcher = ExampleMatcher.matching()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                .withNullHandler(ExampleMatcher.NullHandler.IGNORE)
                 .withIgnoreCase();
 
         for (Map.Entry<String, FilterMeta> entry : filterBy.entrySet()) {
@@ -84,7 +86,7 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
             var value = entry.getValue().getFilterValue();
 
             if (value == null || value.toString().isBlank()) {
-                matcher = matcher.withIgnorePaths(property);
+//                matcher = matcher.withIgnorePaths(property);
                 continue;
             }
 
@@ -94,9 +96,18 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
                 field.setAccessible(true);
                 if (fieldClass.equals(value.getClass())) {
                     field.set(car, value);
-                } else {
-                    this.parseValuesAndSet(field, car, value.toString());
+                    continue;
                 }
+
+                if (fieldClass.equals(CarMake.class)) {
+                    var make = new CarMake();
+                    make.setName(value.toString());
+                    field.set(car, make);
+//                    matcher = matcher.withIgnorePaths("make.id");
+                    continue;
+                }
+
+                this.parseValuesAndSet(field, car, value.toString());
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 log.error(e.getMessage());
             } catch (Error e) {

@@ -5,21 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car {
+public class CarMake {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JoinColumn
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private CarMake make;
-    private String model;
-    private Integer year;
+    private String name;
+    @OneToMany(mappedBy = "make", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Car> cars;
 
-    public Car(CarMake make, String model, Integer year) {
-        this(null, make, model, year);
+    public CarMake(String name) {
+        this(null, name, List.of());
     }
 }

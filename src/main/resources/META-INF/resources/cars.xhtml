@@ -8,31 +8,46 @@
       xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
-        <link rel="icon" href="/favicon.ico?v=1" />
+        <link rel="icon" href="/favicon.ico?v=1"/>
         <title>PrimeSpring - Cars List</title>
     </h:head>
     <h:body>
         <p:card>
             <f:facet name="title">
-                <p:graphicImage library="primespring" name="images/logo-1024x1024.jpeg"
-                                width="80px" style="display: inline-block; vertical-align: middle;"/>
-                <h1 style="display: inline-block; vertical-align: middle; margin-left: 20px;">
-                    <h:outputText value="PrimeSpring - Cars List"/>
-                </h1>
-                <h:form onsubmit="this.action='#{request.contextPath}/logout';"
-                        style="display: inline-block; vertical-align: middle;">
-                    <p:commandButton value="Logout" ajax="false" />
-                </h:form>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:graphicImage library="primespring" name="images/logo-1024x1024.jpeg"
+                                        width="80px" style="display: inline-block; vertical-align: middle;"/>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="center">
+                        <h1 style="vertical-align: middle; display: inline-block;">
+                            <h:outputText value="PrimeSpring - Cars List"/>
+                        </h1>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <h:form>
+                            <p:menuButton value="Options">
+                                <p:menuitem value="Populate" action="#{carController.populate}" update=":formCarsTable" icon="pi pi-upload"/>
+                                <p:menuitem value="Clear" action="#{carController.clear}" update=":formCarsTable" icon="pi pi-refresh"/>
+                                <p:menuitem value="Logout" action="#{carController.logout}" icon="pi pi-ban"/>
+                            </p:menuButton>
+                        </h:form>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
             </f:facet>
             <h:form id="formCarsTable">
                 <p:dataTable id="carsTable" var="car" value="#{carController.carLazyModel}" rowKey="car.id"
-                            paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
-                            paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+                             paginator="true" rows="10" rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
 
-                   <p:column headerText="Id" sortBy="#{car.id}" filterBy="#{car.id}"><h:outputText value="#{car.id}"/></p:column>
-                   <p:column headerText="Make" sortBy="#{car.make}" filterBy="#{car.make}"><h:outputText value="#{car.make}"/></p:column>
-                   <p:column headerText="Model" sortBy="#{car.model}" filterBy="#{car.model}"><h:outputText value="#{car.model}"/></p:column>
-                   <p:column headerText="Year" sortBy="#{car.year}" filterBy="#{car.year}"><h:outputText value="#{car.year}"/></p:column>
+                    <p:column headerText="Id" sortBy="#{car.id}" filterBy="#{car.id}"><h:outputText value="#{car.id}"/></p:column>
+                    <p:column headerText="Make" sortBy="#{car.make}" filterBy="#{car.make}"><h:outputText
+                            value="#{car.make.name}"/></p:column>
+                    <p:column headerText="Model" sortBy="#{car.model}" filterBy="#{car.model}"><h:outputText
+                            value="#{car.model}"/></p:column>
+                    <p:column headerText="Year" sortBy="#{car.year}" filterBy="#{car.year}"><h:outputText
+                            value="#{car.year}"/></p:column>
                 </p:dataTable>
                 <br/>
                 <p:panelGrid columns="2">
