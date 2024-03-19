@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,6 +21,9 @@ public class PrimeSpringGroup implements GrantedAuthority {
 
     @Column(unique = true)
     private String name;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> allowedUrls;
 
     @Override
     public String getAuthority() {

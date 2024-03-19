@@ -22,7 +22,10 @@ public class UserService implements UserDetailsService {
         if (this.hasUser()) {
             return;
         }
-        final var defaultGroup = PrimeSpringGroup.builder().name("default").build();
+        final var defaultGroup = PrimeSpringGroup.builder().
+                name("default")
+                .allowedUrls(List.of("*"))
+                .build();
         final var user = PrimeSpringUser.builder()
                 .username("admin")
                 .password("admin")
